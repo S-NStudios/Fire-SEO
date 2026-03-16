@@ -3,35 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Subscribe to FireSEO newsletter for the latest updates in SEO trends and tips.">
-    <title>FireSEO Newsletter</title>
+    <meta name="description" content="FireSEO - Your ultimate guide to SEO trends, best practices, and expert insights for SEO specialists.">
+    <title>FireSEO Newsletter - SEO News & Guides</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <header>
-        <h1>Welcome to FireSEO!</h1>
-        <p>Your Go-To Resource for SEO</p>
+    <!-- Header Section -->
+    <header class="hero">
+        <div class="container">
+            <h1 class="logo">🔥 FireSEO</h1>
+            <p class="tagline">Master SEO with Expert Guides & Latest News</p>
+            <p class="description">Your ultimate resource for SEO trends, strategies, and insights tailored for SEO specialists worldwide.</p>
+        </div>
     </header>
+
+    <!-- Main Content -->
     <main>
+        <!-- Newsletter Subscription Section -->
         <section class="subscription">
-            <h2>Subscribe to Our Newsletter</h2>
-            <form action="/submit" method="POST">
-                <input type="email" name="email" placeholder="Enter your email" required />
-                <button type="submit">Subscribe</button>
-            </form>
+            <div class="container">
+                <h2>Join 10,000+ SEO Professionals</h2>
+                <p>Get the latest SEO news, expert guides, and actionable tips delivered to your inbox every week.</p>
+                
+                <form class="subscribe-form" id="subscribeForm">
+                    <div class="form-group">
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Enter your email address" 
+                            required 
+                        />
+                        <button type="submit" class="btn-submit">Subscribe Now</button>
+                    </div>
+                    <p class="form-note">✓ No spam. Unsubscribe anytime.</p>
+                </form>
+
+                <!-- Success/Error Messages -->
+                <div id="message" class="message"></div>
+            </div>
         </section>
+
+        <!-- SEO Benefits Section -->
         <section class="seo-benefits">
-            <h2>Why Subscribe?</h2>
-            <ul>
-                <li>Stay updated with the latest SEO trends</li>
-                <li>Receive expert tips and strategies</li>
-                <li>Get insights into algorithm changes</li>
-                <li>Access exclusive content and promotions</li>
-            </ul>
+            <div class="container">
+                <h2>Why Subscribe to FireSEO?</h2>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📊</div>
+                        <h3>Latest Algorithm Updates</h3>
+                        <p>Stay informed about Google algorithm changes and their impact on your rankings.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💡</div>
+                        <h3>Expert Strategies</h3>
+                        <p>Learn proven SEO tactics and strategies from industry experts and thought leaders.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">📚</div>
+                        <h3>Comprehensive Guides</h3>
+                        <p>Access in-depth guides covering on-page SEO, technical SEO, link building, and more.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🎯</div>
+                        <h3>Actionable Tips</h3>
+                        <p>Get practical, actionable tips you can implement immediately to boost rankings.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🚀</div>
+                        <h3>Trend Analysis</h3>
+                        <p>Understand emerging SEO trends and future-proof your strategy accordingly.</p>
+                    </div>
+
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🏆</div>
+                        <h3>Best Practices</h3>
+                        <p>Learn SEO best practices and industry standards to stay ahead of competition.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Articles Section (Placeholder) -->
+        <section class="articles">
+            <div class="container">
+                <h2>Featured Resources</h2>
+                <p class="section-subtitle">Curated articles and guides for SEO professionals</p>
+                
+                <div class="articles-grid" id="articlesGrid">
+                    <div class="article-placeholder">
+                        <div class="placeholder-content">
+                            <h3>Articles Coming Soon</h3>
+                            <p>Subscribe to get notified when new SEO guides and articles are published!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about">
+            <div class="container">
+                <h2>About FireSEO</h2>
+                <p>FireSEO is a premier newsletter dedicated to delivering the hottest SEO news, expert guides, and cutting-edge strategies to SEO specialists worldwide. Whether you're optimizing on-page elements, building quality backlinks, or staying ahead of algorithm changes, FireSEO is your trusted resource.</p>
+                <p><strong>Our Mission:</strong> To empower SEO professionals with knowledge, insights, and actionable strategies to achieve exceptional search visibility.</p>
+            </div>
         </section>
     </main>
+
+    <!-- Footer -->
     <footer>
-        <p>&copy; 2026 FireSEO. All rights reserved.</p>
+        <div class="container">
+            <p>&copy; 2026 FireSEO. All rights reserved. | Crafted for SEO Professionals</p>
+            <div class="footer-links">
+                <a href="#privacy">Privacy Policy</a> | 
+                <a href="#terms">Terms of Service</a> | 
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
     </footer>
+
+    <!-- JavaScript for Form Handling -->
+    <script>
+        document.getElementById('subscribeForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const messageDiv = document.getElementById('message');
+            const submitBtn = e.target.querySelector('.btn-submit');
+
+            // Disable button during submission
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Subscribing...';
+
+            try {
+                const response = await fetch('/api/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    messageDiv.className = 'message success';
+                    messageDiv.innerHTML = `✅ ${data.message}`;
+                    document.getElementById('email').value = '';
+                } else {
+                    messageDiv.className = 'message error';
+                    messageDiv.innerHTML = `❌ ${data.message}`;
+                }
+            } catch (error) {
+                messageDiv.className = 'message error';
+                messageDiv.innerHTML = '❌ An error occurred. Please try again.';
+                console.error('Error:', error);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Subscribe Now';
+            }
+        });
+    </script>
 </body>
-</html>
+    </html>
