@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static('.'));
 
 // Brevo API Configuration
-const BREVO_API_KEY = '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';
+const BREVO_API_KEY = 
 const BREVO_LIST_ID = 8;
 const BREVO_API_URL = 'https://api.brevo.com/v3';
 
