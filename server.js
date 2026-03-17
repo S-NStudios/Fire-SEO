@@ -23,7 +23,6 @@ require('dotenv').config(); // Automatically load the .env for local use
 
 const BREVO_API_KEY = process.env.BREVO_API_KEY; // GitHub secret or .env variable
 const BREVO_LIST_ID = process.env.BREVO_LIST_ID || 8;
-const BREVO_LIST_ID = 8;
 const BREVO_API_URL = 'https://api.brevo.com/v3';
 
 // Headers for Brevo API
